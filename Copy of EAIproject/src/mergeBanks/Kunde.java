@@ -23,17 +23,6 @@ public enum status{
         this.fehler = new LinkedList();
     }
 
-
-    // Konstruktor ohne KundenID für JD
-    public Kunde(String vorname, String nachname, String adresse, String laendercode, String status){
-        this.vorname = vorname;
-        this.nachname = nachname;
-        this.adresse = adresse;
-        this.laendercode = laendercode;
-        this.status = status;
-        this.fehler = new LinkedList();
-    }
-
     public Kunde(int kundenid, String vorname, String nachname, String adresse, String laendercode, String status){
         this.kundenid = kundenid;
         this.vorname = vorname;
@@ -44,7 +33,7 @@ public enum status{
         this.fehler = new LinkedList();
     }
     
-    // toString neu für Objekt Kunde
+    // toString für Objekt Kunde
     @Override
     public String toString(){
         String s = this.kundenid + " | ";

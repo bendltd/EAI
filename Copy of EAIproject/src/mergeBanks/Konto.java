@@ -1,18 +1,41 @@
 package mergeBanks;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+
 public class Konto {
     private int kundenid;
     private String iban;
     private Float kontostand;
     private String kontoart;
+    private LinkedList<String> fehler;
+    
+    public Konto(){
+        this.fehler = new LinkedList<String>();
+    }
     
     public Konto (int kundenid, String iban, float kontostand, String kontoart) {
         this.kundenid = kundenid;
         this.iban = iban;
         this.kontostand = kontostand;
         this.kontoart = kontoart;
+        this.fehler = new LinkedList<String>();
     }
 
+    
+    // toString für Objekt Konto
+    @Override
+    public String toString(){
+        String s = this.kundenid + " | ";
+        s += this.iban + " | ";
+        s += this.kontostand + " | ";
+        s += this.kontoart + " | ";
+        for(Iterator<String> i = this.fehler.iterator(); i.hasNext();){
+            s += i.next() + "; ";
+        }
+        return s;
+    }
+    
     public int getKundenid() {
         return kundenid;
     }
@@ -44,7 +67,13 @@ public class Konto {
     public void setKontoart(String kontoart) {
         this.kontoart = kontoart;
     }
-    
-    
-    
+
+    public LinkedList<String> getFehler() {
+        return fehler;
+    }
+
+    public void setFehler(String fehler) {
+        this.fehler.add(fehler);
+    }
+  
 }
