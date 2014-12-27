@@ -124,7 +124,7 @@ public class BankJD {
             konto.setIban(iban);
             
             // Kontostand nach Float konvertieren
-            Float Kontostand = (float)skkontostand.value;
+            float Kontostand = (float)skkontostand.value;
             konto.setKontostand(Kontostand);
             
             // Prüfen ob Person bereits vorhanden
