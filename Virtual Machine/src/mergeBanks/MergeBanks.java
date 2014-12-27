@@ -9,6 +9,22 @@ public class MergeBanks {
 	
 
 	public static void main(String[] args) {
+		
+		// Silv Test Stuff
+		System.out.println("JD Kunden");
+        
+        BankJD DataJD = new BankJD();
+        for(int i = 0; i<DataJD.getKundenliste().size();i++){
+            System.out.println(DataJD.getKundenliste().get(i).toString());
+        }
+        
+        System.out.println("JD Konti");
+
+        for(int i = 0; i < DataJD.getKontoliste().size(); i++){
+            System.out.println(DataJD.getKontoliste().get(i).toString());
+        }
+		
+		
 		VCTBankDBConnection.getVCTDatas();
 		
         System.out.println("Ausgabe Kundenarray");
