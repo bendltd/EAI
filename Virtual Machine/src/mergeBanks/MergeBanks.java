@@ -55,7 +55,7 @@ public class MergeBanks {
             }
         }
             	
-        // Status erfassen falls noch nicht vorhanden (nach Gesamtvermögen) - Machi fertig wenni heichume
+        // Status erfassen falls noch nicht vorhanden (nach Gesamtvermögen)
 //        for(int i = 0; i < KundenArray.size(); i++){
 //        	float gesamtvermögen;
 //        	if(KundenArray.get(i).getStatus().equals(null)){
@@ -65,24 +65,24 @@ public class MergeBanks {
 //        }
         
 		
-        System.out.println("Ausgabe Kundenarray");
-        for (int i = 0; i < KundenArray.size(); i++) {
-            System.out.println(KundenArray.get(i).getKundenid() + "\t" + KundenArray.get(i).getVorname() + "\t" + KundenArray.get(i).getNachname() + "\t\t" + KundenArray.get(i).getAdresse() + "\t" + KundenArray.get(i).getLaendercode() + "\t" + KundenArray.get(i).getStatus());
-        }
-        System.out.println("\nAusgabe Kontenarray");
-        for (int i = 0; i < KontenArray.size(); i++) {
-            System.out.println(KontenArray.get(i).getIban() + "\t" + KontenArray.get(i).getKontostand() + "\t\t" + KontenArray.get(i).getKontoart());
-        }
+//        System.out.println("Ausgabe Kundenarray");
+//        for (int i = 0; i < KundenArray.size(); i++) {
+//            System.out.println(KundenArray.get(i).getKundenid() + "\t" + KundenArray.get(i).getVorname() + "\t" + KundenArray.get(i).getNachname() + "\t\t" + KundenArray.get(i).getAdresse() + "\t" + KundenArray.get(i).getLaendercode() + "\t" + KundenArray.get(i).getStatus());
+//        }
+//        System.out.println("\nAusgabe Kontenarray");
+//        for (int i = 0; i < KontenArray.size(); i++) {
+//            System.out.println(KontenArray.get(i).getKundenid() + "\t" + KontenArray.get(i).getIban() + "\t" + KontenArray.get(i).getKontostand() + "\t\t" + KontenArray.get(i).getKontoart());
+//        }
         
         // Silv Test Stuff
-//        System.out.println("JD Kunden");
-//        for(int i = 0; i<DataJD.getKundenliste().size();i++){
-//            System.out.println(DataJD.getKundenliste().get(i).toString());
-//        }
-//        System.out.println("JD Konti");
-//        for(int i = 0; i < DataJD.getKontoliste().size(); i++){
-//            System.out.println(DataJD.getKontoliste().get(i).toString());
-//        }
+        System.out.println("Kunden");
+        for(int i = 0; i< KundenArray.size();i++){
+            System.out.println(KundenArray.get(i).toString());
+        }
+        System.out.println("Konti");
+        for(int i = 0; i < KontenArray.size(); i++){
+            System.out.println(KontenArray.get(i).toString());
+        }
         
 	}
 
