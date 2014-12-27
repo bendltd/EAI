@@ -27,7 +27,10 @@ public class MergeBanks {
                 	JDKunden.get(i).getNachname().equals(KundenArray.get(j).getNachname()) &&
                 	JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse())){
                 	
+                	// Status wird von JD übernommen
+                	KundenArray.get(j).setStatus(JDKunden.get(i).getStatus());                	
                     neu = false;
+                    
                     // Konto wird existierendem Kunden zugeteilt
                     int id = KundenArray.get(j).getKundenid();
                     JDKonti.get(i).setKundenid(id);
@@ -52,10 +55,15 @@ public class MergeBanks {
             }
         }
             	
-            
-            
+        // Status erfassen falls noch nicht vorhanden (nach Gesamtvermögen) - Machi fertig wenni heichume
+//        for(int i = 0; i < KundenArray.size(); i++){
+//        	float gesamtvermögen;
+//        	if(KundenArray.get(i).getStatus().equals(null)){
+//        		int id = KundenArray.get(i).getKundenid();
+//        		
+//        	}
+//        }
         
-		
 		
         System.out.println("Ausgabe Kundenarray");
         for (int i = 0; i < KundenArray.size(); i++) {

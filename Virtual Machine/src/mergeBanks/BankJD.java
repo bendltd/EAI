@@ -102,16 +102,16 @@ public class BankJD {
             kunde.setLaendercode(laendercode);
             
             // Status generieren (nach Kontostand)
-            if(skkontostand.value < 1000000){
-                status = "Bronze";
-            }
-            else if(skkontostand.value <= 10000000){
-                status = "Silber";
-            }
-            else if(skkontostand.value > 10000000){
-                status = "Gold";
-            }
-            kunde.setStatus(status);          
+//            if(skkontostand.value < 1000000){
+//                status = "Bronze";
+//            }
+//            else if(skkontostand.value <= 10000000){
+//                status = "Silber";
+//            }
+//            else if(skkontostand.value > 10000000){
+//                status = "Gold";
+//            }
+//            kunde.setStatus(status);          
             
             // IBAN für Sparkonto generieren
             String nullen = new String();
