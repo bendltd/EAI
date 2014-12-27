@@ -10,22 +10,52 @@ public class MergeBanks {
 
 	public static void main(String[] args) {
 		
-		// Silv Test Stuff
-		System.out.println("JD Kunden");
-        
-        BankJD DataJD = new BankJD();
-        for(int i = 0; i<DataJD.getKundenliste().size();i++){
-            System.out.println(DataJD.getKundenliste().get(i).toString());
-        }
-        
-        System.out.println("JD Konti");
-
-        for(int i = 0; i < DataJD.getKontoliste().size(); i++){
-            System.out.println(DataJD.getKontoliste().get(i).toString());
-        }
-		
-		
+		// Laden der VCT Daten
 		VCTBankDBConnection.getVCTDatas();
+		// Laden der JD Daten
+        BankJD DataJD = new BankJD();
+        ArrayList<Kunde> JDKunden = DataJD.getKundenliste();
+        ArrayList<Konto> JDKonti = DataJD.getKontoliste();
+        
+        // Merge Kunden
+        for(int i = 0; i < JDKunden.size(); i++){
+        	boolean neu = true;
+            for(int j = 0; j < KundenArray.size(); j++){
+            	
+            	// Falls Vorname, Nachname & Adresse übereinstimmt wird kein neuer Kunde erfasst
+                if(JDKunden.get(i).getVorname().equals(KundenArray.get(j).getVorname()) &&
+                	JDKunden.get(i).getNachname().equals(KundenArray.get(j).getNachname()) &&
+                	JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse())){
+                	
+                    neu = false;
+                    // Konto wird existierendem Kunden zugeteilt
+                    int id = KundenArray.get(j).getKundenid();
+                    JDKonti.get(i).setKundenid(id);
+                    KontenArray.add(JDKonti.get(i));
+                    break;
+                }
+                // Falls von den Attributen Vorname, Nachname und Adresse zwei übereinstimmen, wird eine Meldung geworfen, dass evtl. der Kunde mehrmals erfasst wurde
+                else if((JDKunden.get(i).getVorname().equals(KundenArray.get(j).getVorname()) && JDKunden.get(i).getNachname().equals(KundenArray.get(j).getNachname())) || 
+                        (JDKunden.get(i).getVorname().equals(KundenArray.get(j).getVorname()) && JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse())) ||
+                        (JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse()) && JDKunden.get(i).getNachname().equals(KundenArray.get(j).getNachname()))){
+                    JDKunden.get(i).setFehler("M�glicherweise mehrfach vorhanden");
+                    break;
+                }
+            }
+            // Falls Kunde nicht bereits vorhanden ist, werden Kunde & Konto nun in die Liste eingefügt
+            if(neu){
+                JDKunden.get(i).setKundenid(kundenidcnt);
+                KundenArray.add(JDKunden.get(i));
+                JDKonti.get(i).setKundenid(kundenidcnt);
+                KontenArray.add(JDKonti.get(i));
+                kundenidcnt++;
+            }
+        }
+            	
+            
+            
+        
+		
 		
         System.out.println("Ausgabe Kundenarray");
         for (int i = 0; i < KundenArray.size(); i++) {
@@ -35,6 +65,17 @@ public class MergeBanks {
         for (int i = 0; i < KontenArray.size(); i++) {
             System.out.println(KontenArray.get(i).getIban() + "\t" + KontenArray.get(i).getKontostand() + "\t\t" + KontenArray.get(i).getKontoart());
         }
+        
+        // Silv Test Stuff
+//        System.out.println("JD Kunden");
+//        for(int i = 0; i<DataJD.getKundenliste().size();i++){
+//            System.out.println(DataJD.getKundenliste().get(i).toString());
+//        }
+//        System.out.println("JD Konti");
+//        for(int i = 0; i < DataJD.getKontoliste().size(); i++){
+//            System.out.println(DataJD.getKontoliste().get(i).toString());
+//        }
+        
 	}
 
 }
