@@ -18,9 +18,10 @@ public class MergeBanks {
         ArrayList<Konto> JDKonti = DataJD.getKontoliste();
         
         // Merge Kunden
+        int AnzahlVCTKunden = KundenArray.size();
         for(int i = 0; i < JDKunden.size(); i++){
         	boolean neu = true;
-            for(int j = 0; j < KundenArray.size(); j++){
+            for(int j = 0; j < AnzahlVCTKunden; j++){
             	
             	// Falls Vorname, Nachname & Adresse übereinstimmt wird kein neuer Kunde erfasst
                 if(JDKunden.get(i).getVorname().equals(KundenArray.get(j).getVorname()) &&
