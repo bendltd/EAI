@@ -59,23 +59,23 @@ public class MergeBanks {
         // Status erfassen falls noch nicht vorhanden (nach Gesamtvermögen)
         for(int i = 0; i < KundenArray.size(); i++){
         	float total = 0;
-        	if(KundenArray.get(i).getStatus().equals(null)){
+        	if(KundenArray.get(i).getStatus() == null){
         		for(int j = 0; j < KontenArray.size(); j++){
         			if(KundenArray.get(i).getKundenid() == KontenArray.get(j).getKundenid()){
         				total += KontenArray.get(j).getKontostand();
         			}
         		}
         	}
-          if(total < 500000){
-        	  KundenArray.get(i).setStatus("Bronze");
-          }
-          else if(total <= 5000000){
-        	  KundenArray.get(i).setStatus("Silber");
-          }
-          else if(total > 5000000){
-        	  KundenArray.get(i).setStatus("Gold");
-          }
-      }
+            if(total < 500000){
+        	    KundenArray.get(i).setStatus("Bronze");
+            }
+            else if(total <= 5000000){
+        	    KundenArray.get(i).setStatus("Silber");
+            }
+            else if(total > 5000000){
+        	    KundenArray.get(i).setStatus("Gold");
+            }
+       }
         
 		
 //        System.out.println("Ausgabe Kundenarray");
