@@ -42,6 +42,8 @@ public class BankJD {
             else if(kkranking.value == 4 || kkranking.value == 5){
                 status = "Bronze";
             }
+            // Zürich ausbügeln
+            kkadresse.value = kkadresse.value.replace("ZH", "Zürich");
             
             // Konto aus Kontokorrent erzeugen
             Konto konto = new Konto(tempKundenID, kkibanKontonummer.value, kkkontostand.value, "Kontokorrent");
@@ -80,7 +82,8 @@ public class BankJD {
             Konto konto = new Konto();
             
             // Adresse ans Zielformat anpassen
-            String adresse = skstrasse.value + ", " + skplzOrt.value;
+            String strasse = skstrasse.value.replace(", ", "");
+            String adresse = strasse + ", " + skplzOrt.value;
             kunde.setAdresse(adresse);
             
             // LÃ¤ndercode hinzufÃ¼gen
@@ -100,19 +103,7 @@ public class BankJD {
                 kunde.setFehler("LÃ¤ndercode unbekannt");
             }
             kunde.setLaendercode(laendercode);
-            
-            // Status generieren (nach Kontostand)
-//            if(skkontostand.value < 1000000){
-//                status = "Bronze";
-//            }
-//            else if(skkontostand.value <= 10000000){
-//                status = "Silber";
-//            }
-//            else if(skkontostand.value > 10000000){
-//                status = "Gold";
-//            }
-//            kunde.setStatus(status);          
-            
+                        
             // IBAN fÃ¼r Sparkonto generieren
             String nullen = new String();
             String knr = skkontonummer.value.toString();
@@ -130,8 +121,19 @@ public class BankJD {
             // PrÃ¼fen ob Person bereits vorhanden
             boolean neu = true;
             for(int j = 0; j < Kundenliste.size(); j++){
+            	
+            	String[] adr1 = Kundenliste.get(j).getAdresse().split("\\s");
+            	String[] adr2 = adresse.split("\\s");
+            	String adresseneu = new String();
                 
-                // Falls Vorname, Nachname & Adresse Ã¼bereinstimmt wird kein neuer Kunde erfasst
+                if(adr1.length > adr2.length){
+                	adresseneu = Kundenliste.get(j).getAdresse();
+                }
+                else{
+                	adresseneu = adresse;
+                }
+                
+                // Falls Vorname, Nachname & Adresse übereinstimmt wird kein neuer Kunde erfasst
                 if(Kundenliste.get(j).getVorname().equals(skvorname.value) &&
                    Kundenliste.get(j).getNachname().equals(sknachname.value) &&
                    Kundenliste.get(j).getAdresse().equals(adresse)){
@@ -143,15 +145,31 @@ public class BankJD {
                     Kontoliste.add(konto);
                     break;
                 }
-                // Falls von den Attributen Vorname, Nachname und Adresse zwei Ã¼bereinstimmen, wird eine Meldung geworfen, dass evtl. der Kunde mehrmals erfasst wurde
+                // Falls Vorname, Nachname & Strassenname übereinstimmt wird kein neuer Kunde erfasst, aber eine Meldung geworfen
+                else if(Kundenliste.get(j).getVorname().equals(skvorname.value) &&
+                   Kundenliste.get(j).getNachname().equals(sknachname.value) &&
+                   adr1[0].replace(",","").equals(adr2[0].replace(",", "")) &&
+                   adr1[adr1.length-1].equals(adr2[adr2.length-1])){
+                    neu = false;
+                    // Konto wird existierendem Kunden zugeteilt
+                    int id = Kundenliste.get(j).getKundenid();
+                    Kundenliste.get(j).setFehler("Korrekte Hausnummer bei Kunde erfragen");
+                    Kundenliste.get(j).setAdresse(adresseneu);
+                    konto.setKundenid(id);
+                    konto.setKontoart("Sparkonto");
+                    Kontoliste.add(konto);
+                    break;
+                }
+                
+                // Falls von den Attributen Vorname, Nachname und Adresse zwei übereinstimmen, wird eine Meldung geworfen, dass evtl. der Kunde mehrmals erfasst wurde
                 else if((Kundenliste.get(j).getVorname().equals(skvorname.value) && Kundenliste.get(j).getNachname().equals(sknachname.value)) || 
                         (Kundenliste.get(j).getVorname().equals(skvorname.value) && Kundenliste.get(j).getAdresse().equals(adresse)) ||
                         (Kundenliste.get(j).getAdresse().equals(adresse) && Kundenliste.get(j).getNachname().equals(sknachname.value))){
-                    kunde.setFehler("MÃ¶glicherweise mehrfach vorhanden");
+                    kunde.setFehler("Möglicherweise mehrfach vorhanden");
                     break;
                 }
             }
-            // Falls Kunde nicht bereits vorhanden ist, werden Kunde & Konto nun in die Liste eingefÃ¼gt
+            // Falls Kunde nicht bereits vorhanden ist, werden Kunde & Konto nun in die Liste eingefügt
             if(neu){
                 kunde.setKundenid(tempKundenID);
                 Kundenliste.add(kunde);

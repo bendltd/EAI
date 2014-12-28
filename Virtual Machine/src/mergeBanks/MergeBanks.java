@@ -7,6 +7,23 @@ public class MergeBanks {
 	static ArrayList<Konto> KontenArray = new ArrayList<Konto>();
 	static int kundenidcnt = 1;
 	
+	public static void merge(ArrayList<Kunde> KundenArray, ArrayList<Kunde> JDKunden, ArrayList<Konto> JDKonti, int i, int j){
+		// Status wird von JD übernommen
+    	KundenArray.get(j).setStatus(JDKunden.get(i).getStatus());                	
+                
+        // Konto wird existierendem Kunden zugeteilt
+        int id = KundenArray.get(j).getKundenid();
+        int idJD = JDKunden.get(i).getKundenid();
+        JDKonti.get(i).setKundenid(id);
+        // Schlaufe durch JDKonti
+        for(int a = 0; a < JDKonti.size(); a++){
+        	if(JDKonti.get(a).getKundenid() == idJD){
+        		JDKonti.get(a).setKundenid(id);
+                KontenArray.add(JDKonti.get(a));
+        	}
+        }
+	}
+	
 
 	public static void main(String[] args) {
 		
@@ -23,21 +40,97 @@ public class MergeBanks {
         	boolean neu = true;
             for(int j = 0; j < AnzahlVCTKunden; j++){
             	
-            	// Falls Vorname, Nachname & Adresse Ã¼bereinstimmt wird kein neuer Kunde erfasst
+            	String[] adr1 = KundenArray.get(j).getAdresse().split("\\s");
+            	String[] adr2 = JDKunden.get(i).getAdresse().split("\\s");
+            	String adresseneu = new String();                
+                if(adr1.length > adr2.length){
+                	adresseneu = KundenArray.get(j).getAdresse();
+                }
+                else{
+                	adresseneu = JDKunden.get(i).getAdresse();
+                }
+            	
+            	// Falls Vorname, Nachname & komplette Adresse übereinstimmt wird gemerged
                 if(JDKunden.get(i).getVorname().equals(KundenArray.get(j).getVorname()) &&
                 	JDKunden.get(i).getNachname().equals(KundenArray.get(j).getNachname()) &&
                 	JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse())){
                 	
-                	// Status wird von JD übernommen
-                	KundenArray.get(j).setStatus(JDKunden.get(i).getStatus());                	
-                    neu = false;
-                    
-                    // Konto wird existierendem Kunden zugeteilt
-                    int id = KundenArray.get(j).getKundenid();
-                    JDKonti.get(i).setKundenid(id);
-                    KontenArray.add(JDKonti.get(i));
+//                	// Status wird von JD übernommen
+//                	KundenArray.get(j).setStatus(JDKunden.get(i).getStatus());                	
+//                    neu = false;
+//                    
+//                    // Konto wird existierendem Kunden zugeteilt
+//                    int id = KundenArray.get(j).getKundenid();
+//                    int idJD = JDKunden.get(i).getKundenid();
+//                    JDKonti.get(i).setKundenid(id);
+//                    // Schlaufe durch JDKonti
+//                    for(int a = 0; a < JDKonti.size(); a++){
+//                    	if(JDKonti.get(a).getKundenid() == idJD){
+//                    		JDKonti.get(a).setKundenid(id);
+//                            KontenArray.add(JDKonti.get(a));
+//                    	}
+//                    }
+                	neu = false;
+                	merge(KundenArray, JDKunden, JDKonti, i, j);
                     break;
                 }
+                
+                // Bei Kunden mit Initialen als Vornamen
+                else if(JDKunden.get(i).getVorname().substring(1, 1) == "." || KundenArray.get(j).getVorname().substring(1, 1) == "."){
+                	String initalJD = JDKunden.get(i).getVorname().substring(0, 0);
+                	String initialVCT = KundenArray.get(j).getVorname().substring(0, 0);
+                	
+                	// Falls Initialen, Nachname & komplette Adresse übereinstimmt wird gemerged
+                	if(initalJD.equals(initialVCT) &&
+                        JDKunden.get(i).getNachname().equals(KundenArray.get(j).getNachname()) &&
+                        JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse())){
+                		
+                		// Voller Vorname wird bestimmt
+                		String name = new String();
+                		if(JDKunden.get(i).getVorname().length() > KundenArray.get(j).getVorname().length()){
+                			name = JDKunden.get(i).getVorname();
+                		}
+                		else{
+                			name = KundenArray.get(j).getVorname();
+                		}
+                		neu = false;
+                    	merge(KundenArray, JDKunden, JDKonti, i, j);
+                    	KundenArray.get(j).setVorname(name);
+                        break;
+                	}
+                	
+                }
+                
+                // Falls Vorname, Nachname & Strassenname übereinstimmt wird gemerged, aber eine Meldung geworfen
+                else if(JDKunden.get(i).getVorname().equals(KundenArray.get(j).getVorname()) &&
+                    	JDKunden.get(i).getNachname().equals(KundenArray.get(j).getNachname()) &&
+                    	adr1[0].replace(",","").equals(adr2[0].replace(",", "")) &&
+                    	adr1[adr1.length-1].equals(adr2[adr2.length-1])){
+                    	
+//                    	// Status wird von JD übernommen
+//                    	KundenArray.get(j).setStatus(JDKunden.get(i).getStatus());                	
+//                        neu = false;
+//                        
+//                        // Konto wird existierendem Kunden zugeteilt
+//                        int id = KundenArray.get(j).getKundenid();
+//                        int idJD = JDKunden.get(i).getKundenid();
+//                        JDKonti.get(i).setKundenid(id);
+//                        KundenArray.get(j).setFehler("Korrekte Hausnummer bei Kunde erfragen");
+//                        KundenArray.get(j).setAdresse(adresseneu);
+//                        // Schlaufe durch JDKonti
+//                        for(int a = 0; a < JDKonti.size(); a++){
+//                        	if(JDKonti.get(a).getKundenid() == idJD){
+//                        		JDKonti.get(a).setKundenid(id);
+//                                KontenArray.add(JDKonti.get(a));
+//                        	}
+//                        }
+                	neu = false;
+                	merge(KundenArray, JDKunden, JDKonti, i, j);
+                	KundenArray.get(j).setFehler("Korrekte Hausnummer bei Kunde erfragen");
+                	KundenArray.get(j).setAdresse(adresseneu);
+                    break;
+                    }
+                
                 // Falls von den Attributen Vorname, Nachname und Adresse zwei Ã¼bereinstimmen, wird eine Meldung geworfen, dass evtl. der Kunde mehrmals erfasst wurde
                 else if((JDKunden.get(i).getVorname().equals(KundenArray.get(j).getVorname()) && JDKunden.get(i).getNachname().equals(KundenArray.get(j).getNachname())) || 
                         (JDKunden.get(i).getVorname().equals(KundenArray.get(j).getVorname()) && JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse())) ||
@@ -45,13 +138,27 @@ public class MergeBanks {
                     JDKunden.get(i).setFehler("Möglicherweise mehrfach vorhanden");
                     break;
                 }
+                
+                // Falls Vor- und Nachname in umgekehrter Reihenfolge vorkommen und die Adresse stimmt, wird nicht gemerged, aber eine Meldung ausgegeben
+                else if(JDKunden.get(i).getVorname().equals(KundenArray.get(j).getNachname()) &&
+                		JDKunden.get(i).getNachname().equals(KundenArray.get(j).getVorname()) &&
+                		JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse())){
+                	JDKunden.get(i).setFehler("Vor- und Nachname möglicherweise vertauscht");
+                	break;
+                }
             }
+            
             // Falls Kunde nicht bereits vorhanden ist, werden Kunde & Konto nun in die Liste eingefÃ¼gt
             if(neu){
+            	int idJD = JDKunden.get(i).getKundenid();
                 JDKunden.get(i).setKundenid(kundenidcnt);
                 KundenArray.add(JDKunden.get(i));
-                JDKonti.get(i).setKundenid(kundenidcnt);
-                KontenArray.add(JDKonti.get(i));
+                for(int a = 0; a < JDKonti.size(); a++){
+                	if(JDKonti.get(a).getKundenid() == idJD){
+                		JDKonti.get(a).setKundenid(kundenidcnt);
+                        KontenArray.add(JDKonti.get(a));
+                	}
+                }
                 kundenidcnt++;
             }
         }
@@ -96,7 +203,6 @@ public class MergeBanks {
         for(int i = 0; i < KontenArray.size(); i++){
             System.out.println(KontenArray.get(i).toString());
         }
-        
 	}
 
 }
