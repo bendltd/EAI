@@ -27,7 +27,7 @@ private static String status;
 //Konto
 private static String iban;
 private static float kontostand;
-private static String kontoart = "Privatkonto";
+private static String kontoart = "Kontokorrent";
 
 
  
@@ -87,11 +87,17 @@ private static Connection getInstance(){
         	  nachname = part[1];
           } else if(kundenname.contains("Dr")){
         	  vorname = part[1];
-        	  nachname = part[0] + " " + part[2];
+        	  nachname = part[2];
           } else if(part.length == 3) {
         	  vorname = part[0];
         	  nachname = part[1] + " " + part[2];
           }
+          vorname = vorname.replace("Ÿ","ue");
+          vorname = vorname.replace("Š","Še");
+          vorname = vorname.replace("š","oe");
+          nachname = nachname.replace("Ÿ","ue");
+          nachname = nachname.replace("Š","Še");
+          nachname = nachname.replace("š","oe");
 //          System.out.println(vorname + ", " + nachname);
           
           
@@ -113,18 +119,23 @@ private static Connection getInstance(){
           
           //Status Bronze, Silber, Gold
           kontostand = Float.parseFloat(saldo);
-          if(kontostand <= 50000) {
-        	  status = "BRONZE";
-          } else if(kontostand <= 500000) {
-        	  status = "SIVLER";
-          } else {
-        	  status = "GOLD";
-          }
+//          if(kontostand <= 50000) {
+//        	  status = "BRONZE";
+//          } else if(kontostand <= 500000) {
+//        	  status = "SIVLER";
+//          } else {
+//        	  status = "GOLD";
+//          }
 //          System.out.println(status);          
           
           
-          //Create IBAN
-          iban = "CH" + "27" + kontonummer;
+          // IBAN fÃ¼r Sparkonto generieren
+          String nullen = new String();
+          // EinfÃ¼gen von Nullen damit IBAN LÃ¤nge von 21 erreicht wird
+          for(int y = kontonummer.length();  y < 12; y++){
+              nullen += "0";
+          }
+          String iban = "CH" + "27" + "00261" + nullen + kontonummer;
           
           
           MergeBanks.KundenArray.add(new Kunde(MergeBanks.kundenidcnt, vorname, nachname, addresse, laendercode, status));
