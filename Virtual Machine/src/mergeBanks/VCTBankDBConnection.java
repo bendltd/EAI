@@ -12,17 +12,17 @@ public class VCTBankDBConnection{
 	
 //DB-Connection-Variabeln
 private static Connection con = null;
+private static String dbHost = "localhost"; // Hostname
+private static String dbPort = "3306";      // Port -- Standard: 3306
+private static String dbName = "vctBank";   // Datenbankname
+private static String dbUser = "root";     // Datenbankuser
+private static String dbPass = "";      // Datenbankpasswort
 //private static String dbHost = "localhost"; // Hostname
 //private static String dbPort = "3306";      // Port -- Standard: 3306
 //private static String dbName = "vctBank";   // Datenbankname
 //private static String dbUser = "root";     // Datenbankuser
 //private static String dbPass = "";      // Datenbankpasswort
-//private static String dbHost = "localhost"; // Hostname
-//private static String dbPort = "3306";      // Port -- Standard: 3306
-//private static String dbName = "vctBank";   // Datenbankname
-//private static String dbUser = "root";     // Datenbankuser
-//private static String dbPass = "";      // Datenbankpasswort
-private static String csvFile = "bendltd/Documents/Account.csv";
+private static String csvFile = "Account.csv";
 
 
 //Zielsystem-Variabeln
@@ -51,7 +51,7 @@ private VCTBankDBConnection(){
     } catch (ClassNotFoundException e) {
         System.out.println("Treiber nicht gefunden");
     } catch (SQLException e) {
-        System.out.println("Verbindung nicht moglich");
+        System.out.println("Verbindung nicht mšglich");
         System.out.println("SQLException: " + e.getMessage());
         System.out.println("SQLState: " + e.getSQLState());
         System.out.println("VendorError: " + e.getErrorCode());
