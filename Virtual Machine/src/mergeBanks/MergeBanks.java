@@ -162,8 +162,8 @@ public class MergeBanks {
        }
        
        // Ausgabe auf Console und in Textfile
-       Output.createTextFile(KundenArray, KontenArray);
        Output.createConsoleOutput(KundenArray, KontenArray);
+       Output.createTextFile(KundenArray, KontenArray);
 	}
 
 }
