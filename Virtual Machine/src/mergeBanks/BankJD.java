@@ -81,7 +81,7 @@ public class BankJD {
             kunde.setNachname(sknachname.value);
             Konto konto = new Konto();
             
-            // Adresse ans Zielformat anpassen 
+            // Adresse ans Zielformat anpassen
             String strasse = skstrasse.value.replace(", ", "");
             String adresse = strasse + ", " + skplzOrt.value;
             kunde.setAdresse(adresse);
