@@ -34,21 +34,6 @@ public class MergeBanks {
         ArrayList<Konto> JDKonti = DataJD.getKontoliste();
         
         
-//        System.out.println("Bevor Merge");
-//        System.out.println("Kunden");
-//        for(int i = 0; i< KundenArray.size();i++){
-//            System.out.println(KundenArray.get(i).toString());
-//        }
-//        System.out.println("Konti");
-//        for(int i = 0; i < KontenArray.size(); i++){
-//            System.out.println(KontenArray.get(i).toString());
-//        }
-//        System.out.println();
-//        System.out.println();
-        
-        
-        
-        
         // Merge Kunden
         int AnzahlVCTKunden = KundenArray.size();
         for(int i = 0; i < JDKunden.size(); i++){
@@ -69,21 +54,6 @@ public class MergeBanks {
                 	JDKunden.get(i).getNachname().equals(KundenArray.get(j).getNachname()) &&
                 	JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse())){
                 	
-//                	// Status wird von JD übernommen
-//                	KundenArray.get(j).setStatus(JDKunden.get(i).getStatus());                	
-//                    neu = false;
-//                    
-//                    // Konto wird existierendem Kunden zugeteilt
-//                    int id = KundenArray.get(j).getKundenid();
-//                    int idJD = JDKunden.get(i).getKundenid();
-//                    JDKonti.get(i).setKundenid(id);
-//                    // Schlaufe durch JDKonti
-//                    for(int a = 0; a < JDKonti.size(); a++){
-//                    	if(JDKonti.get(a).getKundenid() == idJD){
-//                    		JDKonti.get(a).setKundenid(id);
-//                            KontenArray.add(JDKonti.get(a));
-//                    	}
-//                    }
                 	neu = false;
                 	merge(KundenArray, JDKunden, JDKonti, i, j);
                     break;
@@ -128,30 +98,14 @@ public class MergeBanks {
                     	JDKunden.get(i).getNachname().equals(KundenArray.get(j).getNachname()) &&
                     	adr1[0].replace(",","").equals(adr2[0].replace(",", "")) &&
                     	adr1[adr1.length-1].equals(adr2[adr2.length-1])){
-                    	
-//                    	// Status wird von JD übernommen
-//                    	KundenArray.get(j).setStatus(JDKunden.get(i).getStatus());                	
-//                        neu = false;
-//                        
-//                        // Konto wird existierendem Kunden zugeteilt
-//                        int id = KundenArray.get(j).getKundenid();
-//                        int idJD = JDKunden.get(i).getKundenid();
-//                        JDKonti.get(i).setKundenid(id);
-//                        KundenArray.get(j).setFehler("Korrekte Hausnummer bei Kunde erfragen");
-//                        KundenArray.get(j).setAdresse(adresseneu);
-//                        // Schlaufe durch JDKonti
-//                        for(int a = 0; a < JDKonti.size(); a++){
-//                        	if(JDKonti.get(a).getKundenid() == idJD){
-//                        		JDKonti.get(a).setKundenid(id);
-//                                KontenArray.add(JDKonti.get(a));
-//                        	}
-//                        }
+                	
                 	neu = false;
                 	merge(KundenArray, JDKunden, JDKonti, i, j);
                 	KundenArray.get(j).setFehler("Korrekte Hausnummer bei Kunde erfragen");
                 	KundenArray.get(j).setAdresse(adresseneu);
                     break;
-                    }
+                }
+                	
                 
                 // Falls von den Attributen Vorname, Nachname und Adresse zwei Ã¼bereinstimmen, wird eine Meldung geworfen, dass evtl. der Kunde mehrmals erfasst wurde
                 else if((JDKunden.get(i).getVorname().equals(KundenArray.get(j).getVorname()) && JDKunden.get(i).getNachname().equals(KundenArray.get(j).getNachname())) || 
@@ -206,30 +160,10 @@ public class MergeBanks {
         	    KundenArray.get(i).setStatus("Gold");
             }
        }
-        
-		
-//        System.out.println("Ausgabe Kundenarray");
-//        for (int i = 0; i < KundenArray.size(); i++) {
-//            System.out.println(KundenArray.get(i).getKundenid() + "\t" + KundenArray.get(i).getVorname() + "\t" + KundenArray.get(i).getNachname() + "\t\t" + KundenArray.get(i).getAdresse() + "\t" + KundenArray.get(i).getLaendercode() + "\t" + KundenArray.get(i).getStatus());
-//        }
-//        System.out.println("\nAusgabe Kontenarray");
-//        for (int i = 0; i < KontenArray.size(); i++) {
-//            System.out.println(KontenArray.get(i).getKundenid() + "\t" + KontenArray.get(i).getIban() + "\t" + KontenArray.get(i).getKontostand() + "\t\t" + KontenArray.get(i).getKontoart());
-//        }
-        
-        // Silv Test Stuff
-        System.out.println("Test");
-        System.out.println("Kunden");
-        for(int i = 0; i< KundenArray.size();i++){
-            System.out.println(KundenArray.get(i).toString());
-        }
-        System.out.println("Konti");
-        for(int i = 0; i < KontenArray.size(); i++){
-            System.out.println(KontenArray.get(i).toString());
-        }
-        
+       
+       // Ausgabe auf Console und in Textfile
+       Output.createTextFile(KundenArray, KontenArray);
+       Output.createConsoleOutput(KundenArray, KontenArray);
 	}
-	
-	
 
 }
