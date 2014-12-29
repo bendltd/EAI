@@ -87,8 +87,6 @@ private static Connection getInstance(){
           String land = result.getString("land");
           String kontonummer = result.getString("kontonummer");
           String saldo = result.getString("saldo");
-//          String info = kundenname + ", " + strassenname + ", " + plz + ", " + stadt + ", " + land;
-//          System.out.println(info);
 
           
           //Kundenname aufteilen
@@ -142,13 +140,13 @@ private static Connection getInstance(){
           kontostand = Float.parseFloat(saldo);         
           
           
-          // IBAN f√ºr Sparkonto generieren
+          // IBAN für Kontokorrent generieren
           String nullen = new String();
-          // Einf√ºgen von Nullen damit IBAN L√§nge von 21 erreicht wird
+          // Einfügen von Nullen damit IBAN Länge von 21 erreicht wird
           for(int y = kontonummer.length();  y < 12; y++){
               nullen += "0";
           }
-          String iban = "CH" + "27" + "00261" + nullen + kontonummer;
+          iban = "CH" + "27" + "00261" + nullen + kontonummer;
           
           
           MergeBanks.KundenArray.add(new Kunde(MergeBanks.kundenidcnt, vorname, nachname, addresse, laendercode, status));
