@@ -93,9 +93,12 @@ private static Connection getInstance(){
           } else if(kundenname.contains("van") || kundenname.contains("von")) {
         	  vorname = part[0];
         	  nachname = part[1] + " " + part[2];
-          }else if(part.length == 3) {
+          }else if(part.length == 3 & part[0].length() <= 2 & part[1].length() <= 2) {
         	  vorname = part[0] + " " + part[1];
         	  nachname = part[2];
+          }else {
+        	  vorname = part[0];
+        	  nachname = part[1] + " " + part[2];
           }
           vorname = vorname.replace("Ÿ", "ue");
           vorname = vorname.replace("Š", "Še");
@@ -106,7 +109,7 @@ private static Connection getInstance(){
           nachname = WordUtils.capitalizeFully(nachname);
           nachname = nachname.replace("Van", "van");
           nachname = nachname.replace("Von", "von");
-//          System.out.println(vorname + ", " + nachname);
+          System.out.println(vorname + ", " + nachname);
           
           
           //Adresse zusammenfŸhren
