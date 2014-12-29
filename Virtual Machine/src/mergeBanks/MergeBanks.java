@@ -106,8 +106,8 @@ public class MergeBanks {
 //                    	KundenArray.get(j).setVorname(name);
 //                        break;
 //                	}
-                	
-                }
+//                	
+//                }
                 
                 // Falls Vorname, Nachname & Strassenname übereinstimmt wird gemerged, aber eine Meldung geworfen
                 else if(JDKunden.get(i).getVorname().equals(KundenArray.get(j).getVorname()) &&
