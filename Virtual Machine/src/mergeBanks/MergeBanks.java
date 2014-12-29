@@ -175,14 +175,14 @@ public class MergeBanks {
             // Falls Kunde nicht bereits vorhanden ist, werden Kunde & Konto nun in die Liste eingefügt
             if(neu){
             	int idJD = JDKunden.get(i).getKundenid();
-                JDKunden.get(i).setKundenid(kundenidcnt);
-                KundenArray.add(JDKunden.get(i));
                 for(int a = 0; a < JDKonti.size(); a++){
                 	if(JDKonti.get(a).getKundenid() == idJD){
                 		JDKonti.get(a).setKundenid(kundenidcnt);
                         KontenArray.add(JDKonti.get(a));
                 	}
                 }
+                JDKunden.get(i).setKundenid(kundenidcnt);
+                KundenArray.add(JDKunden.get(i));
                 kundenidcnt++;
             }
         }
