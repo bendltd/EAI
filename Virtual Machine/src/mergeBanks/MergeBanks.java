@@ -34,17 +34,17 @@ public class MergeBanks {
         ArrayList<Konto> JDKonti = DataJD.getKontoliste();
         
         
-        System.out.println("Bevor Merge");
-        System.out.println("Kunden");
-        for(int i = 0; i< KundenArray.size();i++){
-            System.out.println(KundenArray.get(i).toString());
-        }
-        System.out.println("Konti");
-        for(int i = 0; i < KontenArray.size(); i++){
-            System.out.println(KontenArray.get(i).toString());
-        }
-        System.out.println();
-        System.out.println();
+//        System.out.println("Bevor Merge");
+//        System.out.println("Kunden");
+//        for(int i = 0; i< KundenArray.size();i++){
+//            System.out.println(KundenArray.get(i).toString());
+//        }
+//        System.out.println("Konti");
+//        for(int i = 0; i < KontenArray.size(); i++){
+//            System.out.println(KontenArray.get(i).toString());
+//        }
+//        System.out.println();
+//        System.out.println();
         
         
         
@@ -218,14 +218,26 @@ public class MergeBanks {
 //        }
         
         // Silv Test Stuff
-        System.out.println("Kunden");
-        for(int i = 0; i< KundenArray.size();i++){
-            System.out.println(KundenArray.get(i).toString());
-        }
-        System.out.println("Konti");
-        for(int i = 0; i < KontenArray.size(); i++){
-            System.out.println(KontenArray.get(i).toString());
-        }
+//        System.out.println("Test");
+//        System.out.println("Kunden");
+//        for(int i = 0; i< KundenArray.size();i++){
+//            System.out.println(KundenArray.get(i).toString());
+//        }
+//        System.out.println("Konti");
+//        for(int i = 0; i < KontenArray.size(); i++){
+//            System.out.println(KontenArray.get(i).toString());
+//        }
+//        
+//        String test = "M.";
+//        System.out.println(test);
+//        System.out.println("test");
+//        System.out.println(test.substring(0, 2));
+//        if(test.substring(0, 2).equals("M.")){
+//        	System.out.println("funzt");
+//        }
+        
 	}
+	
+	
 
 }
