@@ -12,11 +12,18 @@ public class VCTBankDBConnection{
 	
 //DB-Connection-Variabeln
 private static Connection con = null;
-private static String dbHost = "localhost"; // Hostname
-private static String dbPort = "3306";      // Port -- Standard: 3306
-private static String dbName = "vctBank";   // Datenbankname
-private static String dbUser = "root";     // Datenbankuser
-private static String dbPass = "";      // Datenbankpasswort
+//private static String dbHost = "localhost"; // Hostname
+//private static String dbPort = "3306";      // Port -- Standard: 3306
+//private static String dbName = "vctBank";   // Datenbankname
+//private static String dbUser = "root";     // Datenbankuser
+//private static String dbPass = "";      // Datenbankpasswort
+//private static String dbHost = "localhost"; // Hostname
+//private static String dbPort = "3306";      // Port -- Standard: 3306
+//private static String dbName = "vctBank";   // Datenbankname
+//private static String dbUser = "root";     // Datenbankuser
+//private static String dbPass = "";      // Datenbankpasswort
+private static String csvFile = "bendltd/Documents/Account.csv";
+
 
 //Zielsystem-Variabeln
 //Kunde
@@ -35,10 +42,12 @@ private static String kontoart = "Kontokorrent";
  
 private VCTBankDBConnection(){
     try {
-        Class.forName("com.mysql.jdbc.Driver"); // Datenbanktreiber für JDBC Schnittstellen laden.
+//        Class.forName("com.mysql.jdbc.Driver"); // Datenbanktreiber für JDBC Schnittstellen laden.
+        Class.forName("org.relique.jdbc.csv.CsvDriver"); // Datenbanktreiber für JDBC Schnittstellen laden.
  
         // Verbindung zur JDBC-Datenbank herstellen.
-        con = DriverManager.getConnection("jdbc:mysql://"+dbHost+":"+ dbPort+"/"+dbName+"?"+"user="+dbUser+"&"+"password="+dbPass);
+//        con = DriverManager.getConnection("jdbc:mysql://"+dbHost+":"+ dbPort+"/"+dbName+"?"+"user="+dbUser+"&"+"password="+dbPass);
+        con = DriverManager.getConnection("jdbc:relique:csv:" + csvFile);
     } catch (ClassNotFoundException e) {
         System.out.println("Treiber nicht gefunden");
     } catch (SQLException e) {
