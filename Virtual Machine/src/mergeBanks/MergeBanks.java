@@ -14,7 +14,7 @@ public class MergeBanks {
         // Konto wird existierendem Kunden zugeteilt
         int id = KundenArray.get(j).getKundenid();
         int idJD = JDKunden.get(i).getKundenid();
-        JDKonti.get(i).setKundenid(id);
+//        JDKonti.get(i).setKundenid(id);
         // Schlaufe durch JDKonti
         for(int a = 0; a < JDKonti.size(); a++){
         	if(JDKonti.get(a).getKundenid() == idJD){
