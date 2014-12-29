@@ -43,13 +43,13 @@ public class BankJD {
                 status = "Bronze";
             }
             // Zürich ausbügeln
-            kkadresse.value = kkadresse.value.replace("ZH", "Zürich");
+            kkadresse.value = kkadresse.value.replace("ZH", "Z\00FCrich");
             
             // Konto aus Kontokorrent erzeugen
             Konto konto = new Konto(tempKundenID, kkibanKontonummer.value, kkkontostand.value, "Kontokorrent");
             // Fehlerhafte IBAN-LÃ¤nge ausweisen
             if(kkibanKontonummer.value.length() != 21){
-                konto.setFehler("IBAN ungÃ¼ltig: Muss 21 Zeichen lang sein");
+                konto.setFehler("IBAN ung\00FCltig: Muss 21 Zeichen lang sein");
             }
             Kontoliste.add(konto);
             
@@ -100,7 +100,7 @@ public class BankJD {
             }
             else{
                 laendercode = "leer";
-                kunde.setFehler("LÃ¤ndercode unbekannt");
+                kunde.setFehler("L\00E4ndercode unbekannt");
             }
             kunde.setLaendercode(laendercode);
                         
@@ -165,7 +165,7 @@ public class BankJD {
                 else if((Kundenliste.get(j).getVorname().equals(skvorname.value) && Kundenliste.get(j).getNachname().equals(sknachname.value)) || 
                         (Kundenliste.get(j).getVorname().equals(skvorname.value) && Kundenliste.get(j).getAdresse().equals(adresse)) ||
                         (Kundenliste.get(j).getAdresse().equals(adresse) && Kundenliste.get(j).getNachname().equals(sknachname.value))){
-                    kunde.setFehler("Möglicherweise mehrfach vorhanden");
+                    kunde.setFehler("M\00F6glicherweise mehrfach vorhanden");
                     break;
                 }
             }

@@ -143,7 +143,7 @@ public class MergeBanks {
                 else if((JDKunden.get(i).getVorname().equals(KundenArray.get(j).getVorname()) && JDKunden.get(i).getNachname().equals(KundenArray.get(j).getNachname())) || 
                         (JDKunden.get(i).getVorname().equals(KundenArray.get(j).getVorname()) && JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse())) ||
                         (JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse()) && JDKunden.get(i).getNachname().equals(KundenArray.get(j).getNachname()))){
-                    JDKunden.get(i).setFehler("Möglicherweise mehrfach vorhanden");
+                    JDKunden.get(i).setFehler("M\00F6glicherweise mehrfach vorhanden");
                     break;
                 }
                 
@@ -151,7 +151,7 @@ public class MergeBanks {
                 else if(JDKunden.get(i).getVorname().equals(KundenArray.get(j).getNachname()) &&
                 		JDKunden.get(i).getNachname().equals(KundenArray.get(j).getVorname()) &&
                 		JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse())){
-                	JDKunden.get(i).setFehler("Vor- und Nachname möglicherweise vertauscht");
+                	JDKunden.get(i).setFehler("Vor- und Nachname m\00F6glicherweise vertauscht");
                 	break;
                 }
             }
