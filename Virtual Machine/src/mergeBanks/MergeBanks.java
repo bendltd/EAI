@@ -55,7 +55,6 @@ public class MergeBanks {
         for(int i = 0; i < JDKunden.size(); i++){
         	boolean neu = true;
             for(int j = 0; j < AnzahlVCTKunden; j++){
-            	
             	String[] adr1 = KundenArray.get(j).getAdresse().split("\\s");
             	String[] adr2 = JDKunden.get(i).getAdresse().split("\\s");
             	String adresseneu = new String();                
