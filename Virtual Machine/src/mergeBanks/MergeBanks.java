@@ -90,9 +90,9 @@ public class MergeBanks {
                 }
                 
                 // Bei Kunden mit Initialen als Vornamen
-                else if(JDKunden.get(i).getVorname().substring(1, 1) == "." || KundenArray.get(j).getVorname().substring(1, 1) == "."){
-                	String initalJD = JDKunden.get(i).getVorname().substring(0, 0);
-                	String initialVCT = KundenArray.get(j).getVorname().substring(0, 0);
+                else if(JDKunden.get(i).getVorname().charAt(1) == '.' || KundenArray.get(j).getVorname().charAt(1) == '.'){
+                	String initalJD = JDKunden.get(i).getVorname().substring(0, 1);
+                	String initialVCT = KundenArray.get(j).getVorname().substring(0, 1);
                 	
                 	System.out.println("Initial 1. If-Schlaufe klappt");
                 	
@@ -227,14 +227,6 @@ public class MergeBanks {
         for(int i = 0; i < KontenArray.size(); i++){
             System.out.println(KontenArray.get(i).toString());
         }
-//        
-//        String test = "M.";
-//        System.out.println(test);
-//        System.out.println("test");
-//        System.out.println(test.substring(0, 2));
-//        if(test.substring(0, 2).equals("M.")){
-//        	System.out.println("funzt");
-//        }
         
 	}
 	
