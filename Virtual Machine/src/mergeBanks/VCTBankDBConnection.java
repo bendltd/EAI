@@ -94,7 +94,7 @@ private static Connection getInstance(){
         	  vorname = part[0];
         	  nachname = part[1] + " " + part[2];
           }
-          else if(part.length == 3 & part[0].length() < 2 & part[1].length() < 2) {
+          else if(part.length == 3 & part[0].length() <= 2 & part[1].length() <= 2) {
         	  vorname = part[0] + " " + part[1];
         	  nachname = part[2];
           }else if(part.length == 3 & part[0].length() > 2 & part[1].length() > 2){
