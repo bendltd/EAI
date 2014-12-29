@@ -34,6 +34,22 @@ public class MergeBanks {
         ArrayList<Kunde> JDKunden = DataJD.getKundenliste();
         ArrayList<Konto> JDKonti = DataJD.getKontoliste();
         
+        
+        System.out.println("Bevor Merge");
+        System.out.println("Kunden");
+        for(int i = 0; i< KundenArray.size();i++){
+            System.out.println(KundenArray.get(i).toString());
+        }
+        System.out.println("Konti");
+        for(int i = 0; i < KontenArray.size(); i++){
+            System.out.println(KontenArray.get(i).toString());
+        }
+        System.out.println();
+        System.out.println();
+        
+        
+        
+        
         // Merge Kunden
         int AnzahlVCTKunden = KundenArray.size();
         for(int i = 0; i < JDKunden.size(); i++){
