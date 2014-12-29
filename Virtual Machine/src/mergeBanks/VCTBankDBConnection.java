@@ -93,23 +93,24 @@ private static Connection getInstance(){
           } else if(kundenname.contains("van") || kundenname.contains("von")) {
         	  vorname = part[0];
         	  nachname = part[1] + " " + part[2];
-          }else if(part.length == 3 & part[0].length() <= 2 & part[1].length() <= 2) {
+          }
+          else if(part.length == 3 & part[0].length() < 2 & part[1].length() < 2) {
         	  vorname = part[0] + " " + part[1];
         	  nachname = part[2];
-          }else {
+          }else if(part.length == 3 & part[0].length() > 2 & part[1].length() > 2){
         	  vorname = part[0];
         	  nachname = part[1] + " " + part[2];
           }
           vorname = vorname.replace("ü", "ue");
-          vorname = vorname.replace("ä", "äe");
+          vorname = vorname.replace("ä", "ae");
           vorname = vorname.replace("ö", "oe");
           nachname = nachname.replace("ü", "ue");
-          nachname = nachname.replace("ä", "äe");
+          nachname = nachname.replace("ä", "ae");
           nachname = nachname.replace("ö", "oe");
           nachname = WordUtils.capitalizeFully(nachname);
           nachname = nachname.replace("Van", "van");
           nachname = nachname.replace("Von", "von");
-          System.out.println(vorname + ", " + nachname);
+//          System.out.println(vorname + ", " + nachname);
           
           
           //Adresse zusammenführen
@@ -129,15 +130,7 @@ private static Connection getInstance(){
           
           
           //Status Bronze, Silber, Gold
-          kontostand = Float.parseFloat(saldo);
-//          if(kontostand <= 50000) {
-//        	  status = "BRONZE";
-//          } else if(kontostand <= 500000) {
-//        	  status = "SIVLER";
-//          } else {
-//        	  status = "GOLD";
-//          }
-//          System.out.println(status);          
+          kontostand = Float.parseFloat(saldo);         
           
           
           // IBAN f√ºr Sparkonto generieren
@@ -152,7 +145,6 @@ private static Connection getInstance(){
           MergeBanks.KundenArray.add(new Kunde(MergeBanks.kundenidcnt, vorname, nachname, addresse, laendercode, status));
           MergeBanks.KontenArray.add(new Konto(MergeBanks.kundenidcnt, iban, kontostand, kontoart));
           MergeBanks.kundenidcnt++;
-          
           
           
           
