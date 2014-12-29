@@ -166,6 +166,7 @@ public class MergeBanks {
                 		JDKunden.get(i).getNachname().equals(KundenArray.get(j).getVorname()) &&
                 		JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse())){
                 	JDKunden.get(i).setFehler("Vor- und Nachname m\u00F6glicherweise vertauscht");
+                	KundenArray.get(j).setFehler("Vor- und Nachname m\u00F6glicherweise vertauscht");
                 	break;
                 }
             }
