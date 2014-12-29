@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import org.apache.commons.lang3.text.WordUtils;
  
 public class VCTBankDBConnection{
 	
@@ -88,16 +90,22 @@ private static Connection getInstance(){
           } else if(kundenname.contains("Dr")){
         	  vorname = part[1];
         	  nachname = part[2];
-          } else if(part.length == 3) {
+          } else if(kundenname.contains("van") || kundenname.contains("von")) {
         	  vorname = part[0];
         	  nachname = part[1] + " " + part[2];
+          }else if(part.length == 3) {
+        	  vorname = part[0] + " " + part[1];
+        	  nachname = part[2];
           }
-          vorname = vorname.replace("Ÿ","ue");
-          vorname = vorname.replace("Š","Še");
-          vorname = vorname.replace("š","oe");
-          nachname = nachname.replace("Ÿ","ue");
-          nachname = nachname.replace("Š","Še");
-          nachname = nachname.replace("š","oe");
+          vorname = vorname.replace("Ÿ", "ue");
+          vorname = vorname.replace("Š", "Še");
+          vorname = vorname.replace("š", "oe");
+          nachname = nachname.replace("Ÿ", "ue");
+          nachname = nachname.replace("Š", "Še");
+          nachname = nachname.replace("š", "oe");
+          nachname = WordUtils.capitalizeFully(nachname);
+          nachname = nachname.replace("Van", "van");
+          nachname = nachname.replace("Von", "von");
 //          System.out.println(vorname + ", " + nachname);
           
           
