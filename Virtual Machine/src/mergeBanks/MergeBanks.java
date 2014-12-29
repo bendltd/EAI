@@ -218,15 +218,15 @@ public class MergeBanks {
 //        }
         
         // Silv Test Stuff
-//        System.out.println("Test");
-//        System.out.println("Kunden");
-//        for(int i = 0; i< KundenArray.size();i++){
-//            System.out.println(KundenArray.get(i).toString());
-//        }
-//        System.out.println("Konti");
-//        for(int i = 0; i < KontenArray.size(); i++){
-//            System.out.println(KontenArray.get(i).toString());
-//        }
+        System.out.println("Test");
+        System.out.println("Kunden");
+        for(int i = 0; i< KundenArray.size();i++){
+            System.out.println(KundenArray.get(i).toString());
+        }
+        System.out.println("Konti");
+        for(int i = 0; i < KontenArray.size(); i++){
+            System.out.println(KontenArray.get(i).toString());
+        }
 //        
 //        String test = "M.";
 //        System.out.println(test);
