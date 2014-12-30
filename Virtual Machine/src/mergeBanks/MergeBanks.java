@@ -64,26 +64,18 @@ public class MergeBanks {
                 	String initalJD = JDKunden.get(i).getVorname().substring(0, 1);
                 	String initialVCT = KundenArray.get(j).getVorname().substring(0, 1);
                 	
-                	System.out.println("Initial 1. If-Schlaufe klappt");
-                	
                 	// Falls Initialen, Nachname & komplette Adresse übereinstimmt wird gemerged
                 	if(initalJD.equals(initialVCT) &&
                         JDKunden.get(i).getNachname().equals(KundenArray.get(j).getNachname()) &&
                         JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse())){
                 		
-                		System.out.println("Initial 2. If-Schlaufe klappt");
-                		
                 		// Voller Vorname wird bestimmt
                 		String name = new String();
                 		if(JDKunden.get(i).getVorname().length() > KundenArray.get(j).getVorname().length()){
                 			name = JDKunden.get(i).getVorname();
-                			
-                			System.out.println("Initial 3. If-Schlaufe klappt");
                 		}
                 		else{
                 			name = KundenArray.get(j).getVorname();
-                			
-                			System.out.println("Initial 3. If-Schlaufe klappt (else)");
                 		}
                 		neu = false;
                     	merge(KundenArray, JDKunden, JDKonti, i, j);

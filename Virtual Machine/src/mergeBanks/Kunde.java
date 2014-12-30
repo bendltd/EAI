@@ -20,7 +20,7 @@ public enum status{
 
     // leerer Konstruktor
     public Kunde(){
-        this.fehler = new LinkedList();
+        this.fehler = new LinkedList<String>();
     }
 
     public Kunde(int kundenid, String vorname, String nachname, String adresse, String laendercode, String status){
@@ -30,7 +30,7 @@ public enum status{
         this.adresse = adresse;
         this.laendercode = laendercode;
         this.status = status;
-        this.fehler = new LinkedList();
+        this.fehler = new LinkedList<String>();
     }
     
     // toString für Objekt Kunde

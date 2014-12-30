@@ -2,13 +2,14 @@ package mergeBanks;
 
 import java.util.List;
 import java.util.ArrayList;
+
 import javax.xml.ws.Holder;
 
 
 public class BankJD {
     
-    private ArrayList<Kunde> Kundenliste = new ArrayList();
-    private ArrayList<Konto> Kontoliste = new ArrayList();
+    private ArrayList<Kunde> Kundenliste = new ArrayList<Kunde>();
+    private ArrayList<Konto> Kontoliste = new ArrayList<Konto>();
     
     // Kunden in einer Liste speichern
     public BankJD(){
@@ -17,14 +18,14 @@ public class BankJD {
         int tempKundenID = 1;
         
         // Holder für Kontokorrent initialisieren
-        Holder<String> kkvorname = new Holder();
-        Holder<String> kknachname = new Holder();
-        Holder<String> kkadresse = new Holder();
-        Holder<String> kkland = new Holder();
-        Holder<Integer> kkranking = new Holder();
-        Holder<String> kkibanKontonummer = new Holder();
-        Holder<Float> kkkontostand = new Holder();
-        Holder<String> kkbic = new Holder();
+        Holder<String> kkvorname = new Holder<String>();
+        Holder<String> kknachname = new Holder<String>();
+        Holder<String> kkadresse = new Holder<String>();
+        Holder<String> kkland = new Holder<String>();
+        Holder<Integer> kkranking = new Holder<Integer>();
+        Holder<String> kkibanKontonummer = new Holder<String>();
+        Holder<Float> kkkontostand = new Holder<Float>();
+        Holder<String> kkbic = new Holder<String>();
         
         // Kunden mit Kontokorrent aus WSDL auslesen
         List<String> NamenKK = listeKontokorrentNachname();
@@ -61,13 +62,13 @@ public class BankJD {
         }
         
         // Holder für Sparkonto initialisieren 
-        Holder<String> skvorname = new Holder();
-        Holder<String> sknachname = new Holder();
-        Holder<String> skstrasse = new Holder();
-        Holder<String> skplzOrt = new Holder();
-        Holder<Float> skzinsen = new Holder();
-        Holder<Long> skkontonummer = new Holder();
-        Holder<Long> skkontostand = new Holder();
+        Holder<String> skvorname = new Holder<String>();
+        Holder<String> sknachname = new Holder<String>();
+        Holder<String> skstrasse = new Holder<String>();
+        Holder<String> skplzOrt = new Holder<String>();
+        Holder<Float> skzinsen = new Holder<Float>();
+        Holder<Long> skkontonummer = new Holder<Long>();
+        Holder<Long> skkontostand = new Holder<Long>();
         
         // Kunden mit Sparkonto aus WSDL auslesen
         List<String> NamenSK = listeSparkontoNachname();
@@ -182,16 +183,7 @@ public class BankJD {
         
     }
 
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
+    // Getter & Setter f�r ArrayLists
     public ArrayList<Kunde> getKundenliste() {
         return Kundenliste;
     }
@@ -210,7 +202,7 @@ public class BankJD {
 
     
 
-    
+    // Importierte Funktionen aus WSDL
     private static void holeKontoKorrent(java.lang.String queryVorname, java.lang.String queryNachname, javax.xml.ws.Holder<java.lang.String> vorname, javax.xml.ws.Holder<java.lang.String> nachname, javax.xml.ws.Holder<java.lang.String> adresse, javax.xml.ws.Holder<java.lang.String> land, javax.xml.ws.Holder<java.lang.Integer> ranking, javax.xml.ws.Holder<java.lang.String> ibanKontonummer, javax.xml.ws.Holder<java.lang.Float> kontostand, javax.xml.ws.Holder<java.lang.String> bic) {
         ch.fhnw.wi.eai.bankjd.BankJDService service = new ch.fhnw.wi.eai.bankjd.BankJDService();
         ch.fhnw.wi.eai.bankjd.BankJD port = service.getBankJDPort();
