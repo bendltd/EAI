@@ -61,7 +61,7 @@ public class MergeBanks {
                 }
                 
                 // Falls Vorname, Nachname & Strassenname übereinstimmt wird gemerged, aber eine Meldung geworfen
-                else if(JDKunden.get(i).getVorname().equals(KundenArray.get(j).getVorname()) &&
+                if(JDKunden.get(i).getVorname().equals(KundenArray.get(j).getVorname()) &&
                     	JDKunden.get(i).getNachname().equals(KundenArray.get(j).getNachname()) &&
                     	adr1[0].replace(",","").equals(adr2[0].replace(",", "")) &&
                     	adr1[adr1.length-1].equals(adr2[adr2.length-1])){
@@ -74,7 +74,7 @@ public class MergeBanks {
                 }
                 
                 // Falls Vor- und Nachname in umgekehrter Reihenfolge vorkommen und die Adresse stimmt, wird gemerged und eine Meldung ausgegeben
-                else if(JDKunden.get(i).getVorname().equals(KundenArray.get(j).getNachname()) &&
+                if(JDKunden.get(i).getVorname().equals(KundenArray.get(j).getNachname()) &&
                 		JDKunden.get(i).getNachname().equals(KundenArray.get(j).getVorname()) &&
                 		JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse())){
                 	neu = false;
