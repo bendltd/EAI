@@ -41,7 +41,7 @@ public class BankJDService
     public BankJDService() {
         super(__getWsdlLocation(), BANKJDSERVICE_QNAME);
     }
-
+    
     public BankJDService(WebServiceFeature... features) {
         super(__getWsdlLocation(), BANKJDSERVICE_QNAME, features);
     }
