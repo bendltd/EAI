@@ -122,8 +122,10 @@ public class MergeBanks {
             	int idJD = JDKunden.get(i).getKundenid();
                 for(int a = 0; a < JDKonti.size(); a++){
                 	if(JDKonti.get(a).getKundenid() == idJD){
-                		JDKonti.get(a).setKundenid(kundenidcnt);
+//                		JDKonti.get(a).setKundenid(kundenidcnt);
                         KontenArray.add(JDKonti.get(a));
+                        KontenArray.get(KontenArray.size()-1).setKundenid(kundenidcnt);
+                        
                 	}
                 }
                 JDKunden.get(i).setKundenid(kundenidcnt);
