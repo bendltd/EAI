@@ -74,14 +74,14 @@ public class MergeBanks {
                 }
                 
                 // Falls Vor- und Nachname in umgekehrter Reihenfolge vorkommen und die Adresse stimmt, wird gemerged und eine Meldung ausgegeben
-                else if(JDKunden.get(i).getVorname().equals(KundenArray.get(j).getNachname()) &&
-                		JDKunden.get(i).getNachname().equals(KundenArray.get(j).getVorname()) &&
-                		JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse())){
-                	neu = false;
-                	merge(KundenArray, JDKunden, JDKonti, i, j);
-                	KundenArray.get(j).setFehler("Vor- und Nachname m\u00F6glicherweise vertauscht");
-                    break;
-                }
+//                else if(JDKunden.get(i).getVorname().equals(KundenArray.get(j).getNachname()) &&
+//                		JDKunden.get(i).getNachname().equals(KundenArray.get(j).getVorname()) &&
+//                		JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse())){
+//                	neu = false;
+//                	merge(KundenArray, JDKunden, JDKonti, i, j);
+//                	KundenArray.get(j).setFehler("Vor- und Nachname m\u00F6glicherweise vertauscht");
+//                    break;
+//                }
                 
                 // Bei Kunden mit Initialen als Vornamen
                 else if(JDKunden.get(i).getVorname().charAt(1) == '.' || KundenArray.get(j).getVorname().charAt(1) == '.'){
