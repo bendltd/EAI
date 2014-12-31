@@ -101,11 +101,11 @@ private static Connection getInstance(){
         	  nachname = part[1] + " " + part[2];
           }
           vorname = vorname.replace("\u00FC", "ue");
-          vorname = vorname.replace("Š", "ae");
-          vorname = vorname.replace("š", "oe");
+          vorname = vorname.replace("\u00E4", "ae");
+          vorname = vorname.replace("\u00F6", "oe");
           nachname = nachname.replace("\u00FC", "ue");
-          nachname = nachname.replace("Š", "ae");
-          nachname = nachname.replace("š", "oe");
+          nachname = nachname.replace("\u00E4", "ae");
+          nachname = nachname.replace("\u00F6", "oe");
           nachname = WordUtils.capitalizeFully(nachname);
           nachname = nachname.replace("Van", "van");
           nachname = nachname.replace("Von", "von");
