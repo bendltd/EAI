@@ -17,8 +17,9 @@ public class MergeBanks {
         // Schlaufe durch JDKonti
         for(int a = 0; a < JDKonti.size(); a++){
         	if(JDKonti.get(a).getKundenid() == idJD){
-        		JDKonti.get(a).setKundenid(id);
+//        		JDKonti.get(a).setKundenid(id);
                 KontenArray.add(JDKonti.get(a));
+                KontenArray.get(KontenArray.lastIndexOf(KontenArray)).setKundenid(id);
         	}
         }
 	}
