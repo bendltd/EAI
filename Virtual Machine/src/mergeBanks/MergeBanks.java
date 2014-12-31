@@ -19,7 +19,7 @@ public class MergeBanks {
         	if(JDKonti.get(a).getKundenid() == idJD){
 //        		JDKonti.get(a).setKundenid(id);
                 KontenArray.add(JDKonti.get(a));
-                KontenArray.get(KontenArray.lastIndexOf(KontenArray)).setKundenid(id);
+                KontenArray.get(KontenArray.size()-1).setKundenid(id);
         	}
         }
 	}
