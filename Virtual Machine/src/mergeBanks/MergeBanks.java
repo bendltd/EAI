@@ -131,7 +131,8 @@ public class MergeBanks {
                 	}
                 }
                 JDKunden.get(i).setKundenid(kundenidcnt);
-                KundenArray.add(JDKunden.get(i));
+//                KundenArray.add(JDKunden.get(i));
+                KundenArray.get(KundenArray.size()-1).setKundenid(kundenidcnt);
                 kundenidcnt++;
             }
         }
