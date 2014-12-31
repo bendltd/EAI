@@ -100,10 +100,10 @@ private static Connection getInstance(){
         	  vorname = part[0];
         	  nachname = part[1] + " " + part[2];
           }
-          vorname = vorname.replace("Ÿ", "ue");
+          vorname = vorname.replace("\u00FC", "ue");
           vorname = vorname.replace("Š", "ae");
           vorname = vorname.replace("š", "oe");
-          nachname = nachname.replace("Ÿ", "ue");
+          nachname = nachname.replace("\u00FC", "ue");
           nachname = nachname.replace("Š", "ae");
           nachname = nachname.replace("š", "oe");
           nachname = WordUtils.capitalizeFully(nachname);
