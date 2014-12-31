@@ -28,7 +28,7 @@ public class MergeBanks {
 	public static void main(String[] args) {
 		
 		// Laden der VCT Daten
-		VCTBankDBConnection.getVCTDatas();
+		BankVCT.getVCTDatas();
 		// Laden der JD Daten
         BankJD DataJD = new BankJD();
         ArrayList<Kunde> JDKunden = DataJD.getKundenliste();

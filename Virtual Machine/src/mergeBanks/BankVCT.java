@@ -5,10 +5,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import org.apache.commons.lang3.text.WordUtils;
  
-public class VCTBankDBConnection{
+public class BankVCT{
 	
 //DB-Connection-Variabeln
 private static Connection con = null;
@@ -17,7 +16,6 @@ private static String dbPort = "3306";      // Port -- Standard: 3306
 private static String dbName = "vctBank";   // Datenbankname
 private static String dbUser = "root";     // Datenbankuser
 private static String dbPass = "";      // Datenbankpasswort
-private static String csvFile = "Account.csv";
 
 
 //Zielsystem-Variabeln
@@ -35,15 +33,13 @@ private static String kontoart = "Kontokorrent";
 
 
  
-private VCTBankDBConnection(){
+private BankVCT(){
     try {
         Class.forName("com.mysql.jdbc.Driver"); // Datenbanktreiber für JDBC Schnittstellen laden.
-//        Class.forName("org.relique.jdbc.csv.CsvDriver"); // Datenbanktreiber für JDBC Schnittstellen laden.
  
         // Verbindung zur JDBC-Datenbank herstellen.
-        con = DriverManager.getConnection("jdbc:mysql://"+dbHost+"/"+dbName+"?"+"user="+dbUser+"&"+"password="+dbPass);
-//        con = DriverManager.getConnection("jdbc:relique:csv:" + csvFile);
-    	con = DriverManager.getConnection("jdbc:hsqldb:file:/../src");
+        con = DriverManager.getConnection("jdbc:mysql://"+dbHost+":"+ dbPort+"/"+dbName+"?"+"user="+dbUser+"&"+"password="+dbPass);
+
     } catch (ClassNotFoundException e) {
         System.out.println("Treiber nicht gefunden");
     } catch (SQLException e) {
@@ -56,7 +52,7 @@ private VCTBankDBConnection(){
  
 private static Connection getInstance(){
     if(con == null)
-        new VCTBankDBConnection();
+        new BankVCT();
     return con;
 }
  
