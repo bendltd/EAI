@@ -107,7 +107,7 @@ public class MergeBanks {
                     break;
                 }
                 
-                // Falls Vor- und Nachname in umgekehrter Reihenfolge vorkommen und die Adresse stimmt, wird nicht gemerged, aber eine Meldung ausgegeben
+                // Falls Vor- und Nachname in umgekehrter Reihenfolge vorkommen und die Adresse stimmt, wird gemerged und eine Meldung ausgegeben
                 else if(JDKunden.get(i).getVorname().equals(KundenArray.get(j).getNachname()) &&
                 		JDKunden.get(i).getNachname().equals(KundenArray.get(j).getVorname()) &&
                 		JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse())){
