@@ -12,16 +12,11 @@ public class VCTBankDBConnection{
 	
 //DB-Connection-Variabeln
 private static Connection con = null;
-private static String dbHost = "mysql.hostinger.de"; // Hostname
-//private static String dbPort = "3306";      // Port -- Standard: 3306
-private static String dbName = "u566874539_ftw";   // Datenbankname
-private static String dbUser = "u566874539_admin";     // Datenbankuser
-private static String dbPass = "WEFHNW14";      // Datenbankpasswort
-//private static String dbHost = "localhost"; // Hostname
-//private static String dbPort = "3306";      // Port -- Standard: 3306
-//private static String dbName = "vctBank";   // Datenbankname
-//private static String dbUser = "root";     // Datenbankuser
-//private static String dbPass = "";      // Datenbankpasswort
+private static String dbHost = "localhost"; // Hostname
+private static String dbPort = "3306";      // Port -- Standard: 3306
+private static String dbName = "vctBank";   // Datenbankname
+private static String dbUser = "root";     // Datenbankuser
+private static String dbPass = "";      // Datenbankpasswort
 private static String csvFile = "Account.csv";
 
 
@@ -42,15 +37,11 @@ private static String kontoart = "Kontokorrent";
  
 private VCTBankDBConnection(){
     try {
-//        Class.forName("com.mysql.jdbc.Driver"); // Datenbanktreiber für JDBC Schnittstellen laden.
+        Class.forName("com.mysql.jdbc.Driver"); // Datenbanktreiber für JDBC Schnittstellen laden.
 //        Class.forName("org.relique.jdbc.csv.CsvDriver"); // Datenbanktreiber für JDBC Schnittstellen laden.
-
-    	Class.forName( "org.hsqldb.jdbcDriver" );
  
         // Verbindung zur JDBC-Datenbank herstellen.
-//        con = DriverManager.getConnection("jdbc:mysql://31.170.164.40:3306/u566874539_ftw", "u566874539_admin", "WEFHNW14");
-//        con = DriverManager.getConnection("jdbc:mysql://"+dbHost+":8080"+"/"+dbName, dbUser, dbPass);
-//        con = DriverManager.getConnection("jdbc:mysql://"+dbHost+"/"+dbName+"?"+"user="+dbUser+"&"+"password="+dbPass);
+        con = DriverManager.getConnection("jdbc:mysql://"+dbHost+"/"+dbName+"?"+"user="+dbUser+"&"+"password="+dbPass);
 //        con = DriverManager.getConnection("jdbc:relique:csv:" + csvFile);
     	con = DriverManager.getConnection("jdbc:hsqldb:file:/../src");
     } catch (ClassNotFoundException e) {
