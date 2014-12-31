@@ -74,17 +74,25 @@ public class MergeBanks {
                 }
                 
                 // Falls Vor- und Nachname in umgekehrter Reihenfolge vorkommen und die Adresse stimmt, wird gemerged und eine Meldung ausgegeben
-//                else if(JDKunden.get(i).getVorname().equals(KundenArray.get(j).getNachname()) &&
-//                		JDKunden.get(i).getNachname().equals(KundenArray.get(j).getVorname()) &&
-//                		JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse())){
-//                	neu = false;
-//                	merge(KundenArray, JDKunden, JDKonti, i, j);
-//                	KundenArray.get(j).setFehler("Vor- und Nachname m\u00F6glicherweise vertauscht");
-//                    break;
-//                }
+                else if(JDKunden.get(i).getVorname().equals(KundenArray.get(j).getNachname()) &&
+                		JDKunden.get(i).getNachname().equals(KundenArray.get(j).getVorname()) &&
+                		JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse())){
+                	neu = false;
+                	merge(KundenArray, JDKunden, JDKonti, i, j);
+                	KundenArray.get(j).setFehler("Vor- und Nachname m\u00F6glicherweise vertauscht");
+                    break;
+                }
+                
+                // Falls von den Attributen Vorname, Nachname und Adresse zwei übereinstimmen, wird eine Meldung geworfen, dass evtl. der Kunde mehrmals erfasst wurde
+                else if((JDKunden.get(i).getVorname().equals(KundenArray.get(j).getVorname()) && JDKunden.get(i).getNachname().equals(KundenArray.get(j).getNachname())) || 
+                        (JDKunden.get(i).getVorname().equals(KundenArray.get(j).getVorname()) && JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse())) ||
+                        (JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse()) && JDKunden.get(i).getNachname().equals(KundenArray.get(j).getNachname()))){
+                    JDKunden.get(i).setFehler("M\u00F6glicherweise mehrfach vorhanden");
+                    break;
+                }
                 
                 // Bei Kunden mit Initialen als Vornamen
-                else if(JDKunden.get(i).getVorname().charAt(1) == '.' || KundenArray.get(j).getVorname().charAt(1) == '.'){
+                if(JDKunden.get(i).getVorname().charAt(1) == '.' || KundenArray.get(j).getVorname().charAt(1) == '.'){
                 	String initalJD = JDKunden.get(i).getVorname().substring(0, 1);
                 	String initialVCT = KundenArray.get(j).getVorname().substring(0, 1);
                 	
@@ -108,13 +116,7 @@ public class MergeBanks {
                 	}
                 	
                 }
-                // Falls von den Attributen Vorname, Nachname und Adresse zwei übereinstimmen, wird eine Meldung geworfen, dass evtl. der Kunde mehrmals erfasst wurde
-                else if((JDKunden.get(i).getVorname().equals(KundenArray.get(j).getVorname()) && JDKunden.get(i).getNachname().equals(KundenArray.get(j).getNachname())) || 
-                        (JDKunden.get(i).getVorname().equals(KundenArray.get(j).getVorname()) && JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse())) ||
-                        (JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse()) && JDKunden.get(i).getNachname().equals(KundenArray.get(j).getNachname()))){
-                    JDKunden.get(i).setFehler("M\u00F6glicherweise mehrfach vorhanden");
-                    break;
-                }
+                
             }
             
             // Falls Kunde nicht bereits vorhanden ist, werden Kunde & Konto nun in die Liste eingefügt
