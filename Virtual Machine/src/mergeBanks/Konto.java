@@ -3,7 +3,7 @@ package mergeBanks;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class Konto {
+public class Konto implements Comparable<Konto> {
     private int kundenid;
     private String iban;
     private Float kontostand;
@@ -75,5 +75,10 @@ public class Konto {
     public void setFehler(String fehler) {
         this.fehler.add(fehler);
     }
+
+	@Override
+	public int compareTo(Konto konto) {
+		return this.kundenid;
+	}
   
 }

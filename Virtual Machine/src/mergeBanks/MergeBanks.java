@@ -1,6 +1,7 @@
 package mergeBanks;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MergeBanks {
 	static ArrayList<Kunde> KundenArray = new ArrayList<Kunde>();
@@ -36,26 +37,7 @@ public class MergeBanks {
         BankJD DataJD = new BankJD();
         ArrayList<Kunde> JDKunden = DataJD.getKundenliste();
         ArrayList<Konto> JDKonten = DataJD.getKontoliste();
-        
-        
-        // Before Merge
-//        System.out.println("Kunden VCT");
-//        for(int i = 0; i< KundenArray.size();i++){
-//            System.out.println(KundenArray.get(i).toString());
-//        }
-//        System.out.println("Konti VCT");
-//        for(int i = 0; i < KontenArray.size(); i++){
-//            System.out.println(KontenArray.get(i).toString());
-//        }
-//        System.out.println("Kunden JD");
-//        for(int i = 0; i< JDKunden.size();i++){
-//            System.out.println(JDKunden.get(i).toString());
-//        }
-//        System.out.println("Konten JD");
-//        for(int i = 0; i < JDKonten.size(); i++){
-//            System.out.println(JDKonten.get(i).toString());
-//        }
-        
+ 
         
         // Merge Kunden
         int AnzahlVCTKunden = KundenArray.size();
@@ -106,12 +88,12 @@ public class MergeBanks {
                 }
                 
                 // Falls von den Attributen Vorname, Nachname und Adresse zwei übereinstimmen, wird eine Meldung geworfen, dass evtl. der Kunde mehrmals erfasst wurde
-//                else if((JDKunden.get(i).getVorname().equals(KundenArray.get(j).getVorname()) && JDKunden.get(i).getNachname().equals(KundenArray.get(j).getNachname())) || 
-//                        (JDKunden.get(i).getVorname().equals(KundenArray.get(j).getVorname()) && JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse())) ||
-//                        (JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse()) && JDKunden.get(i).getNachname().equals(KundenArray.get(j).getNachname()))){
-//                    JDKunden.get(i).setFehler("M\u00F6glicherweise mehrfach vorhanden");
-//                    break;
-//                }
+                else if((JDKunden.get(i).getVorname().equals(KundenArray.get(j).getVorname()) && JDKunden.get(i).getNachname().equals(KundenArray.get(j).getNachname())) || 
+                        (JDKunden.get(i).getVorname().equals(KundenArray.get(j).getVorname()) && JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse())) ||
+                        (JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse()) && JDKunden.get(i).getNachname().equals(KundenArray.get(j).getNachname()))){
+                    JDKunden.get(i).setFehler("M\u00F6glicherweise mehrfach vorhanden");
+                    break;
+                }
                 
                 // Bei Kunden mit Initialen als Vornamen
                 else if(JDKunden.get(i).getVorname().charAt(1) == '.' || KundenArray.get(j).getVorname().charAt(1) == '.'){
@@ -150,16 +132,13 @@ public class MergeBanks {
                 		Konto konto = new Konto(kundenidcnt, ko.getIban(), ko.getKontostand(), ko.getKontoart());
                 		konto.getFehler().addAll(ko.getFehler());
                         KontenArray.add(konto);
-//                        KontenArray.get(KontenArray.size()-1).setKundenid(kundenidcnt);
                         
                 	}
                 }
-//                JDKunden.get(i).setKundenid(kundenidcnt);
                 Kunde ku = JDKunden.get(i);
                 Kunde kunde = new Kunde(kundenidcnt, ku.getVorname(), ku.getNachname(), ku.getAdresse(), ku.getLaendercode(), ku.getStatus());
                 kunde.getFehler().addAll(ku.getFehler());
                 KundenArray.add(kunde);
-//                KundenArray.get(KundenArray.size()-1).setKundenid(kundenidcnt);
                 kundenidcnt++;
             }
         }
@@ -184,23 +163,15 @@ public class MergeBanks {
         	    KundenArray.get(i).setStatus("Gold");
             }
        }
-       
+        
+        // KontenArray sortieren
+        Collections.sort(KontenArray);
+        
+        
        // Ausgabe auf Console und in Textfile
        Output.createConsoleOutput(KundenArray, KontenArray);
        System.out.println();
-       Output.createTextFile(KundenArray, KontenArray);
-      
-       //Test nach Merge
-     System.out.println("Kunden JD");
-     for(int i = 0; i< JDKunden.size();i++){
-         System.out.println(JDKunden.get(i).toString());
-     }
-     System.out.println("Konten JD");
-     for(int i = 0; i < JDKonten.size(); i++){
-         System.out.println(JDKonten.get(i).toString());
-     }
-       
-       
+       Output.createTextFile(KundenArray, KontenArray); 
 	}
 
 }
