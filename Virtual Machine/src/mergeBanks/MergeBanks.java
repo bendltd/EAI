@@ -7,7 +7,7 @@ public class MergeBanks {
 	static ArrayList<Konto> KontenArray = new ArrayList<Konto>();
 	static int kundenidcnt = 1;
 	
-	public static void merge(ArrayList<Kunde> KundenArray, ArrayList<Kunde> JDKunden, ArrayList<Konto> JDKonti, int i, int j){
+	public static void merge(ArrayList<Kunde> KundenArray, ArrayList<Kunde> JDKunden, ArrayList<Konto> JDKonten, int i, int j){
 		// Status wird von JD übernommen
     	KundenArray.get(j).setStatus(JDKunden.get(i).getStatus());                	
                 
@@ -15,10 +15,10 @@ public class MergeBanks {
         int id = KundenArray.get(j).getKundenid();
         int idJD = JDKunden.get(i).getKundenid();
         // Schlaufe durch JDKonti
-        for(int a = 0; a < JDKonti.size(); a++){
-        	if(JDKonti.get(a).getKundenid() == idJD){
+        for(int a = 0; a < JDKonten.size(); a++){
+        	if(JDKonten.get(a).getKundenid() == idJD){
 //        		JDKonti.get(a).setKundenid(id);
-                KontenArray.add(JDKonti.get(a));
+                KontenArray.add(JDKonten.get(a));
                 KontenArray.get(KontenArray.size()-1).setKundenid(id);
         	}
         }
@@ -32,7 +32,26 @@ public class MergeBanks {
 		// Laden der JD Daten
         BankJD DataJD = new BankJD();
         ArrayList<Kunde> JDKunden = DataJD.getKundenliste();
-        ArrayList<Konto> JDKonti = DataJD.getKontoliste();
+        ArrayList<Konto> JDKonten = DataJD.getKontoliste();
+        
+        
+        // Before Merge
+        System.out.println("Kunden VCT");
+        for(int i = 0; i< KundenArray.size();i++){
+            System.out.println(KundenArray.get(i).toString());
+        }
+        System.out.println("Konti VCT");
+        for(int i = 0; i < KontenArray.size(); i++){
+            System.out.println(KontenArray.get(i).toString());
+        }
+        System.out.println("Kunden JD");
+        for(int i = 0; i< JDKunden.size();i++){
+            System.out.println(JDKunden.get(i).toString());
+        }
+        System.out.println("Konten JD");
+        for(int i = 0; i < JDKonten.size(); i++){
+            System.out.println(JDKonten.get(i).toString());
+        }
         
         
         // Merge Kunden
@@ -56,7 +75,7 @@ public class MergeBanks {
                 	JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse())){
                 	
                 	neu = false;
-                	merge(KundenArray, JDKunden, JDKonti, i, j);
+                	merge(KundenArray, JDKunden, JDKonten, i, j);
                     break;
                 }
                 
@@ -67,7 +86,7 @@ public class MergeBanks {
                     	adr1[adr1.length-1].equals(adr2[adr2.length-1])){
                 	
                 	neu = false;
-                	merge(KundenArray, JDKunden, JDKonti, i, j);
+                	merge(KundenArray, JDKunden, JDKonten, i, j);
                 	KundenArray.get(j).setFehler("Korrekte Hausnummer bei Kunde erfragen");
                 	KundenArray.get(j).setAdresse(adresseneu);
                     break;
@@ -78,7 +97,7 @@ public class MergeBanks {
                 		JDKunden.get(i).getNachname().equals(KundenArray.get(j).getVorname()) &&
                 		JDKunden.get(i).getAdresse().equals(KundenArray.get(j).getAdresse())){
                 	neu = false;
-                	merge(KundenArray, JDKunden, JDKonti, i, j);
+                	merge(KundenArray, JDKunden, JDKonten, i, j);
                 	KundenArray.get(j).setFehler("Vor- und Nachname m\u00F6glicherweise vertauscht");
                     break;
                 }
@@ -110,7 +129,7 @@ public class MergeBanks {
                 			name = KundenArray.get(j).getVorname();
                 		}
                 		neu = false;
-                    	merge(KundenArray, JDKunden, JDKonti, i, j);
+                    	merge(KundenArray, JDKunden, JDKonten, i, j);
                     	KundenArray.get(j).setVorname(name);
                         break;
                 	}
@@ -122,10 +141,10 @@ public class MergeBanks {
             // Falls Kunde nicht bereits vorhanden ist, werden Kunde & Konto nun in die Liste eingefÃ¼gt
             if(neu){
             	int idJD = JDKunden.get(i).getKundenid();
-                for(int a = 0; a < JDKonti.size(); a++){
-                	if(JDKonti.get(a).getKundenid() == idJD){
-                		JDKonti.get(a).setKundenid(kundenidcnt);
-                        KontenArray.add(JDKonti.get(a));
+                for(int a = 0; a < JDKonten.size(); a++){
+                	if(JDKonten.get(a).getKundenid() == idJD){
+                		JDKonten.get(a).setKundenid(kundenidcnt);
+                        KontenArray.add(JDKonten.get(a));
 //                        KontenArray.get(KontenArray.size()-1).setKundenid(kundenidcnt);
                         
                 	}
