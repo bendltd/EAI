@@ -18,7 +18,8 @@ public class MergeBanks {
         for(int a = 0; a < JDKonten.size(); a++){
         	if(JDKonten.get(a).getKundenid() == idJD){
 //        		JDKonti.get(a).setKundenid(id);
-                KontenArray.add(JDKonten.get(a));
+        		Konto konto = JDKonten.get(a);
+                KontenArray.add(konto);
                 KontenArray.get(KontenArray.size()-1).setKundenid(id);
         	}
         }
@@ -144,14 +145,16 @@ public class MergeBanks {
             	int idJD = JDKunden.get(i).getKundenid();
                 for(int a = 0; a < JDKonten.size(); a++){
                 	if(JDKonten.get(a).getKundenid() == idJD){
+                		Konto konto = JDKonten.get(a);
 //                		JDKonten.get(a).setKundenid(kundenidcnt);
-                        KontenArray.add(JDKonten.get(a));
+                        KontenArray.add(konto);
                         KontenArray.get(KontenArray.size()-1).setKundenid(kundenidcnt);
                         
                 	}
                 }
 //                JDKunden.get(i).setKundenid(kundenidcnt);
-                KundenArray.add(JDKunden.get(i));
+                Kunde kunde = JDKunden.get(i);
+                KundenArray.add(kunde);
                 KundenArray.get(KundenArray.size()-1).setKundenid(kundenidcnt);
                 kundenidcnt++;
             }
