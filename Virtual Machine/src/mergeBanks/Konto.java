@@ -76,9 +76,18 @@ public class Konto implements Comparable<Konto> {
         this.fehler.add(fehler);
     }
 
+    // Override compareTo für Sortierung des KontenArray
 	@Override
 	public int compareTo(Konto konto) {
-		return this.kundenid;
+		if(this.kundenid < konto.getKundenid()){
+			return -1;
+		}
+		else if(this.kundenid == konto.getKundenid()){
+			return 0;
+		}
+		else{	
+			return 1;
+		}
 	}
   
 }
