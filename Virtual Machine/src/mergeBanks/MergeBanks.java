@@ -22,6 +22,7 @@ public class MergeBanks {
                 KontenArray.get(KontenArray.size()-1).setKundenid(id);
         	}
         }
+        KundenArray.get(j).getFehler().addAll(JDKunden.get(i).getFehler());
 	}
 	
 
