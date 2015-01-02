@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import org.apache.commons.lang3.text.WordUtils;
  
 public class BankVCT{
@@ -110,12 +111,10 @@ private static Connection getInstance(){
           nachname = WordUtils.capitalizeFully(nachname);
           nachname = nachname.replace("Van", "van");
           nachname = nachname.replace("Von", "von");
-//          System.out.println(vorname + ", " + nachname);
           
           
           //Adresse zusammenführen
           addresse = strassenname + ", " + plz + " " + stadt;
-//          System.out.println(addresse);
           
           
           //Ländercode erstellen
@@ -126,8 +125,8 @@ private static Connection getInstance(){
           } else if(land.equals("The Netherlands")) {
         	  laendercode = "NL";
           }
-//          System.out.println(laendercode);
 
+          
           //Kontostand
           kontostand = Float.parseFloat(saldo);         
           

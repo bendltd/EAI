@@ -2,8 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="lib" path="D:/Dropbox/EAI Projekt/lib/commons-lang3-3.3.2.jar"/>
-	<classpathentry kind="lib" path="D:/Dropbox/EAI Projekt/lib/csvjdbc-1.0-22.jar"/>
-	<classpathentry kind="lib" path="D:/Dropbox/EAI Projekt/lib/mysql-connector-java-5.1.34-bin.jar"/>
+	<classpathentry kind="lib" path="/Users/bendltd/Documents/libimport/mysql-connector-java-5.1.34-bin.jar"/>
+	<classpathentry kind="lib" path="/Users/bendltd/Documents/libimport/commons-lang3-3.3.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
