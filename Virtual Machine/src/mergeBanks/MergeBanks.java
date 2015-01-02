@@ -37,22 +37,22 @@ public class MergeBanks {
         
         
         // Before Merge
-        System.out.println("Kunden VCT");
-        for(int i = 0; i< KundenArray.size();i++){
-            System.out.println(KundenArray.get(i).toString());
-        }
-        System.out.println("Konti VCT");
-        for(int i = 0; i < KontenArray.size(); i++){
-            System.out.println(KontenArray.get(i).toString());
-        }
-        System.out.println("Kunden JD");
-        for(int i = 0; i< JDKunden.size();i++){
-            System.out.println(JDKunden.get(i).toString());
-        }
-        System.out.println("Konten JD");
-        for(int i = 0; i < JDKonten.size(); i++){
-            System.out.println(JDKonten.get(i).toString());
-        }
+//        System.out.println("Kunden VCT");
+//        for(int i = 0; i< KundenArray.size();i++){
+//            System.out.println(KundenArray.get(i).toString());
+//        }
+//        System.out.println("Konti VCT");
+//        for(int i = 0; i < KontenArray.size(); i++){
+//            System.out.println(KontenArray.get(i).toString());
+//        }
+//        System.out.println("Kunden JD");
+//        for(int i = 0; i< JDKunden.size();i++){
+//            System.out.println(JDKunden.get(i).toString());
+//        }
+//        System.out.println("Konten JD");
+//        for(int i = 0; i < JDKonten.size(); i++){
+//            System.out.println(JDKonten.get(i).toString());
+//        }
         
         
         // Merge Kunden
@@ -182,6 +182,18 @@ public class MergeBanks {
        Output.createConsoleOutput(KundenArray, KontenArray);
        System.out.println();
        Output.createTextFile(KundenArray, KontenArray);
+      
+       //Test nach Merge
+     System.out.println("Kunden JD");
+     for(int i = 0; i< JDKunden.size();i++){
+         System.out.println(JDKunden.get(i).toString());
+     }
+     System.out.println("Konten JD");
+     for(int i = 0; i < JDKonten.size(); i++){
+         System.out.println(JDKonten.get(i).toString());
+     }
+       
+       
 	}
 
 }
