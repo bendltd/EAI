@@ -144,15 +144,15 @@ public class MergeBanks {
             	int idJD = JDKunden.get(i).getKundenid();
                 for(int a = 0; a < JDKonten.size(); a++){
                 	if(JDKonten.get(a).getKundenid() == idJD){
-                		JDKonten.get(a).setKundenid(kundenidcnt);
+//                		JDKonten.get(a).setKundenid(kundenidcnt);
                         KontenArray.add(JDKonten.get(a));
-//                        KontenArray.get(KontenArray.size()-1).setKundenid(kundenidcnt);
+                        KontenArray.get(KontenArray.size()-1).setKundenid(kundenidcnt);
                         
                 	}
                 }
-                JDKunden.get(i).setKundenid(kundenidcnt);
+//                JDKunden.get(i).setKundenid(kundenidcnt);
                 KundenArray.add(JDKunden.get(i));
-//                KundenArray.get(KundenArray.size()-1).setKundenid(kundenidcnt);
+                KundenArray.get(KundenArray.size()-1).setKundenid(kundenidcnt);
                 kundenidcnt++;
             }
         }
