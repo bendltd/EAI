@@ -17,8 +17,9 @@ public class MergeBanks {
         // Schlaufe durch JDKonti
         for(int a = 0; a < JDKonten.size(); a++){
         	if(JDKonten.get(a).getKundenid() == idJD){
-//        		JDKonti.get(a).setKundenid(id);
-        		Konto konto = JDKonten.get(a);
+        		Konto ko = JDKonten.get(a);
+        		Konto konto = new Konto(ko.getKundenid(), ko.getIban(), ko.getKontostand(), ko.getKontoart());
+        		konto.getFehler().addAll(ko.getFehler());
                 KontenArray.add(konto);
                 KontenArray.get(KontenArray.size()-1).setKundenid(id);
         	}
@@ -145,17 +146,20 @@ public class MergeBanks {
             	int idJD = JDKunden.get(i).getKundenid();
                 for(int a = 0; a < JDKonten.size(); a++){
                 	if(JDKonten.get(a).getKundenid() == idJD){
-                		Konto konto = JDKonten.get(a);
-//                		JDKonten.get(a).setKundenid(kundenidcnt);
+                		Konto ko = JDKonten.get(a);
+                		Konto konto = new Konto(kundenidcnt, ko.getIban(), ko.getKontostand(), ko.getKontoart());
+                		konto.getFehler().addAll(ko.getFehler());
                         KontenArray.add(konto);
-                        KontenArray.get(KontenArray.size()-1).setKundenid(kundenidcnt);
+//                        KontenArray.get(KontenArray.size()-1).setKundenid(kundenidcnt);
                         
                 	}
                 }
 //                JDKunden.get(i).setKundenid(kundenidcnt);
-                Kunde kunde = JDKunden.get(i);
+                Kunde ku = JDKunden.get(i);
+                Kunde kunde = new Kunde(kundenidcnt, ku.getVorname(), ku.getNachname(), ku.getAdresse(), ku.getLaendercode(), ku.getStatus());
+                kunde.getFehler().addAll(ku.getFehler());
                 KundenArray.add(kunde);
-                KundenArray.get(KundenArray.size()-1).setKundenid(kundenidcnt);
+//                KundenArray.get(KundenArray.size()-1).setKundenid(kundenidcnt);
                 kundenidcnt++;
             }
         }
