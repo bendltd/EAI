@@ -11,11 +11,11 @@ public class BankVCT{
 	
 //DB-Connection-Variabeln
 private static Connection con = null;
-private static String dbHost = "localhost"; // Hostname
-private static String dbPort = "3306";      // Port -- Standard: 3306
-private static String dbName = "vctBank";   // Datenbankname
-private static String dbUser = "root";     // Datenbankuser
-private static String dbPass = "";      // Datenbankpasswort
+private static String dbHost = "localhost";	// Hostname
+private static String dbPort = "3306";		// Port -- Standard: 3306
+private static String dbName = "vctBank";	// Datenbankname
+private static String dbUser = "root";		// Datenbankuser
+private static String dbPass = "";			// Datenbankpasswort
 
 
 //Zielsystem-Variabeln
@@ -103,6 +103,7 @@ private static Connection getInstance(){
           vorname = vorname.replace("\u00FC", "ue");
           vorname = vorname.replace("\u00E4", "ae");
           vorname = vorname.replace("\u00F6", "oe");
+          vorname = WordUtils.capitalizeFully(vorname);
           nachname = nachname.replace("\u00FC", "ue");
           nachname = nachname.replace("\u00E4", "ae");
           nachname = nachname.replace("\u00F6", "oe");
@@ -126,9 +127,8 @@ private static Connection getInstance(){
         	  laendercode = "NL";
           }
 //          System.out.println(laendercode);
-          
-          
-          //Status Bronze, Silber, Gold
+
+          //Kontostand
           kontostand = Float.parseFloat(saldo);         
           
           
